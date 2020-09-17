@@ -7,7 +7,6 @@ const RestPassword = () => {
     const { resetPassword } = auth;
     const [email, setEmail] = useState();
     const [error, setError] = useState('');
-    console.log(email);
 
     const handleEmail = (e) => {
         const getEmail = e.target.value;
