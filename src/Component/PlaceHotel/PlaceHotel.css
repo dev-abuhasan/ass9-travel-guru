@@ -1,0 +1,18 @@
+#place-hotel{
+    color: #000;
+    background-color: #fff;
+    padding: 20px 20px;
+    border-radius: 10px;
+}
+.place-title h3{
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.hotel-info h3{
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+}

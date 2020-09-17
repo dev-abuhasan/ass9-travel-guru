@@ -1,0 +1,32 @@
+#travel{
+    color:#fff;
+}
+h3{
+    font-size: 56px;
+    letter-spacing: 3px;
+}
+#travel-form-sec{
+    color:#a5a5a5;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 15px 40px;
+}
+.travel-input{
+    background-color: #F2F2F2;
+}
+::placeholder{
+    font-weight: bold;
+}
+.booking{
+    color: #fff;
+}
+.booking:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.form-check-input{
+    margin-top: 7px;
+    width: 10px;
+    height: 10px;
+
+}
