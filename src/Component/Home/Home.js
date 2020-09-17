@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, {  } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import "./Home.css"
 import coxBazarImg from "../../Image/travel/Sajek.png";
@@ -52,6 +52,11 @@ const Home = () => {
                             <h3>Sreemongol</h3>
                         </div>
                     </Col>
+                    <section className="w-75 mx-auto p-3">
+                        <button className="btn btn-light m-2 py-2 px-3"><i className="fa fa-chevron-left" aria-hidden="true"></i></button>
+
+                        <button className="btn btn-light m-2 py-2 px-3"><i className="fa fa-chevron-right" aria-hidden="true"></i></button>
+                    </section>
                 </Row>
             </section>
         </Container>

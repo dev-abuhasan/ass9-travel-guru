@@ -33,12 +33,11 @@ const Login = () => {
     //Handle Firebase Auth
     //get user login form auth.js file
     const auth = useContext(UserContext);
-    const { handleGoogleSignIn, facebookRegistration, loginInUserEmailAndPass } = auth;
+    const { handleGoogleSignIn, facebookRegistration, loginInUserEmailAndPass, error } = auth;
 
     //redirect to path settings
     const location = useLocation();
     const history = useHistory()
-    //console.log(history.location);
     let { from } = location.state || { from: { pathname: "/" } };
 
     //google sign in 
@@ -57,32 +56,39 @@ const Login = () => {
             })
     }
     //login a user with email and pass
-    const submitLogin = (userInfo) => {
-        console.log(userInfo);
-        if (userInfo.email && userInfo.password) {
-            //console.log('user sign in success');
-            loginInUserEmailAndPass(userInfo.email, userInfo.password)
+    const submitLogin = (e) => {
+        if (e.email && e.password) {
+            loginInUserEmailAndPass(e.email, e.password)
                 .then(r => history.replace(from))
         }
-
+        //e.preventDefault();
+    }
+    const changePath = () => {
+        const url = `/reset-password`;
+        history.push(url);
     }
 
     return (
         <Container id="login" className="app">
             <Formsy className='form' onValidSubmit={submitLogin} onValid={enableButton} onInvalid={disableButton}>
-                <h2>Login</h2>
+                <h2 className="text-dark">Login</h2>
                 <MyInput label="" type="text" name="email" validations="maxLength:25,isEmail" validationErrors={errors} placeholder="Email address..." required />
                 <MyInput label="" type="password" name="password" validations="minLength:6" validationErrors={errors} placeholder="password..." required />
                 <div className="d-flex justify-content-between align-items-center">
                     <div>
                         <input type="checkbox" id="login-checkbox" /><span className="text-danger">Remember me</span>
                     </div>
-                    <p className="text-warning">Forgot your password</p>
+                    <p className="text-dark cursor-pointer" onClick={() => changePath()}>Forgot your password</p>
                 </div>
                 <br />
                 <button type="submit" disabled={!canSubmit} className="">
                     Log-In
                 </button>
+                {error
+                    ? <p><span className="text-danger w-50">{error}</span></p>
+                    : <p></p>
+                }
+                <br />
                 <p className="text-center text-dark">Created A Account? <Link className="Link" to='/sign-up'>Sign-Up</Link></p>
             </Formsy>
             <div className="other-sign-option">

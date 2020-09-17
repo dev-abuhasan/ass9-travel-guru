@@ -18,8 +18,6 @@ const errors = {
     isStrong: 'password is not strong include spacial characters $,% or capital latter'
 }
 const SignUp = () => {
-
-
     const [canSubmit, setCanSubmit] = useState(false)
     addValidationRule('isStrong', function (values, value) {
         return ['$', '%'].some(v => value && value.indexOf(v) !== -1)
@@ -31,28 +29,25 @@ const SignUp = () => {
         setCanSubmit(true)
     }
 
-
     //Handle Firebase Auth
     //get user login form auth.js file
     const auth = useContext(UserContext);
     const { handleGoogleSignIn, facebookRegistration, registerEmailAndPassword, succeed } = auth;
     const location = useLocation();
     const history = useHistory()
-    let { from } = location.state || { from: { pathname: "/home" } };
+    let { from } = location.state || { from: { pathname: "/login" } };
+
     //form submit to firebase register with email and password
     const submit = (newUserInfo) => {
         console.log(newUserInfo);
         if (newUserInfo.email && newUserInfo.password) {
             registerEmailAndPassword(newUserInfo.email, newUserInfo.password)
                 .then(r => {
-                    console.log(r);
-    
-                    console.log(r);
                     history.replace(from);
                 })
-
         }
     }
+
     //google sign in 
     const handGoogleSign = () => {
         handleGoogleSignIn()
@@ -60,6 +55,7 @@ const SignUp = () => {
                 history.replace(from);
             })
     }
+    
     //facebook sign in
     const handFacebookSign = () => {
         facebookRegistration()

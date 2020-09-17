@@ -14,6 +14,7 @@ import PlaceHotel from './Component/PlaceHotel/PlaceHotel';
 import { UserProvider } from './Component/FireBaseAuth/auth';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 import SignUp from './Component/FireBaseAuth/SignUp';
+import RestPassword from './Component/RestPosword/RestPassword';
 function App() {
   return (
     <UserProvider>
@@ -35,8 +36,11 @@ function App() {
             <Route exact path="/login">
               <Login />
             </Route>
-            <Route exact path="/sign-up/">
+            <Route exact path="/sign-up">
               <SignUp />
+            </Route>
+            <Route exact path="/reset-password">
+              <RestPassword />
             </Route>
             <Route exact path="/">
               <Home />

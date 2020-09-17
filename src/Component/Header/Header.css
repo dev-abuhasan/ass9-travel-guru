@@ -17,7 +17,8 @@
     margin-right: 15px;
 }
 ::placeholder {
-    color: #fff;
+    color: #ebe4e4!important;
+    text-shadow: 1px 1px 2px #000;
 }
 .header-nav{
 

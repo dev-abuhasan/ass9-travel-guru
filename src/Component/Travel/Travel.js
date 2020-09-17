@@ -1,12 +1,15 @@
 import React from 'react';
 import './Travel.css'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { Link, useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 const Travel = () => {
     const history = useHistory();
     const pathName = history.location.pathname;
-    console.log(pathName);
-
+    //submit btn handle
+    const handChangePath = () => {
+        const url = `/place-hotel/${getDynamicValue(pathName)}`
+        history.push(url)
+    }
     const getDynamicValue = (e) => {
         if (e === '/travel/cox-bazar') {
             const title = "Cox's Bazar";
@@ -57,11 +60,9 @@ const Travel = () => {
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" label="i agree all condition" className="" required />
                             </Form.Group>
-                            <Link to={`/place-hotel/${getDynamicValue(pathName)}`}>
-                                <Button variant="" className="login-btn d-block w-100" type="submit">
-                                    Start Booking
+                            <Button variant="" onClick={() => handChangePath()} className="login-btn d-block w-100" type="submit">
+                                Start Booking
                             </Button>
-                            </Link>
                         </Form>
                     </div>
                 </Col>

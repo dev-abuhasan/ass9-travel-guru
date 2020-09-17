@@ -15,6 +15,7 @@ const UserProvider = (props) => {
   //Declare State
   const [user, setUser] = useState(null);
   const [succeed, setSucceed] = useState(false);
+  const[error, setError] = useState('');
 
   //  register user with email and password
   const registerEmailAndPassword = (email, password) => {
@@ -22,6 +23,7 @@ const UserProvider = (props) => {
       .then(res => {
         const isPossibleNewUser = true;
         setSucceed(isPossibleNewUser);
+        verifyEmail();
         return res;
       })
       .catch(error => {
@@ -83,6 +85,26 @@ const UserProvider = (props) => {
   //   });
   // }
 
+  //verifyEmail
+  const verifyEmail = () => {
+    const user = firebase.auth().currentUser;
+    user.sendEmailVerification().then(() => {
+      // Email sent.
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  //reset password
+  const resetPassword = email => {
+    var auth = firebase.auth();
+    auth.sendPasswordResetEmail(email).then(() => {
+       
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
   //login in user 
   const loginInUserEmailAndPass = (email, password) => {
     return firebase.auth().signInWithEmailAndPassword(email, password)
@@ -92,8 +114,8 @@ const UserProvider = (props) => {
         return result;
       })
       .catch(error => {
-        var errorMessage = error.message;
-        console.log(errorMessage);
+        const errorMessage = error.message;
+        setError(errorMessage);
       });
   }
 
@@ -111,8 +133,10 @@ const UserProvider = (props) => {
       {
         user,
         succeed,
+        error,
         // login,
         loginInUserEmailAndPass,
+        resetPassword,
         registerEmailAndPassword,
         handleGoogleSignIn,
         facebookRegistration,

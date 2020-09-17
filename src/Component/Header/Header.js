@@ -5,6 +5,7 @@ import logo from '../../Image/Logo.png';
 import { UserContext } from '../FireBaseAuth/auth';
 import './Header.css'
 const Header = () => {
+    //get user info auth.js file
     const auth = useContext(UserContext);
     const { logOut } = auth;
 
