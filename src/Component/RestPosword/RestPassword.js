@@ -6,6 +6,7 @@ const RestPassword = () => {
     const auth = useContext(UserContext);
     const { resetPassword } = auth;
     const [email, setEmail] = useState();
+    const [error, setError] = useState('');
     console.log(email);
 
     const handleEmail = (e) => {
@@ -13,16 +14,20 @@ const RestPassword = () => {
         setEmail(getEmail)
     }
     const handResetPassword = () => {
-        console.log(email);
         resetPassword(email);
-
+        setError('Please Check Your Email Address');
     }
     return (
         <Container id="reset-password">
-            <h4>Type Your Password For Reset.</h4>
-            <input type="text" name="email" placeholder="Your Email...." onBlur={handleEmail} required/>
+            <h4>Type Your Email For Reset Your Password.</h4>
+            <input type="text" name="email" placeholder="Your Email...." onBlur={handleEmail} required />
             <br />
             <button type="submit" className="btn btn-danger" onClick={() => handResetPassword()}>Reset Password</button>
+            <br/><br/>
+            {error
+                ? <h5 className="text-success bg-light w-50 float-left p-4">{error}</h5>
+                : <h5>.....</h5>
+            }
         </Container>
     );
 };
