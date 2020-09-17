@@ -11,7 +11,6 @@ const PlaceHotel = () => {
     const starIcon = <FontAwesomeIcon icon={faStar} />
     const history = useHistory();
     const pathName = history.location.pathname;
-    console.log(pathName);
     const getDynamicValue = (e) => {
         if (e === "/place-hotel/Cox's Bazar") {
             const title = "Cox's Bazar";
