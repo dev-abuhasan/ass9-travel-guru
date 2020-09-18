@@ -16,3 +16,20 @@
     letter-spacing: 1px;
     font-family: 'Open Sans', sans-serif;
 }
+.main-map{
+    height: 600px;
+}
+
+.userInfo{
+    width: 100%;
+    text-align: center;
+}
+.user-information{
+    background-color: #e44fe9;
+    opacity: 0.8;
+    width: 200px;
+    height: 200px;
+    border-radius:50%;
+    padding: 5px;
+    margin: 0 auto;
+}

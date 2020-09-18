@@ -6,16 +6,13 @@ class MyInput extends React.Component {
     super(props)
     this.changeValue = this.changeValue.bind(this)
   }
-
   changeValue (event) {
     // setValue() will set the value of the component, which in
     this.props.setValue(event.currentTarget.value)
   }
-
   render () {
     // An error message is passed only if the component is invalid
     const errorMessage = this.props.errorMessage
-
     return (
       <div className='input-row'>
         <label>{this.props.label} {this.props.isRequired ? '' : null}</label>

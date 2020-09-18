@@ -9,8 +9,6 @@ firebase.initializeApp(firebaseConfig);
 let Context = null;
 const { Provider, Consumer } = Context = createContext();
 
-
-
 const UserProvider = (props) => {
   //Declare State
   const [user, setUser] = useState(null);
@@ -18,12 +16,13 @@ const UserProvider = (props) => {
   const[error, setError] = useState('');
 
   //  register user with email and password
-  const registerEmailAndPassword = (email, password) => {
+  const registerEmailAndPassword = (email, password, name) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(res => {
         const isPossibleNewUser = true;
         setSucceed(isPossibleNewUser);
         verifyEmail();
+        updateUserProfile(name);
         return res;
       })
       .catch(error => {
@@ -74,16 +73,16 @@ const UserProvider = (props) => {
   }
 
   //update user profile
-  // const updateUserProfile = name => {
-  //   const user = firebase.auth().currentUser;
-  //   user.updateProfile({
-  //     displayName: { name }
-  //   }).then(() => {
-  //     console.log('user name updated successfully');
-  //   }).catch(error => {
-  //     console.log(error);
-  //   });
-  // }
+  const updateUserProfile = name => {
+    const user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: name 
+    }).then(() => {
+      console.log('user name updated successfully');
+    }).catch(error => {
+      console.log(error);
+    });
+  }
 
   //verifyEmail
   const verifyEmail = () => {
@@ -109,8 +108,8 @@ const UserProvider = (props) => {
   const loginInUserEmailAndPass = (email, password) => {
     return firebase.auth().signInWithEmailAndPassword(email, password)
       .then((result) => {
-        const user = result.user;
-        setUser(user)
+        const name = result.user.displayName;
+        setUser(name);
         return result;
       })
       .catch(error => {
@@ -134,7 +133,6 @@ const UserProvider = (props) => {
         user,
         succeed,
         error,
-        // login,
         loginInUserEmailAndPass,
         resetPassword,
         registerEmailAndPassword,

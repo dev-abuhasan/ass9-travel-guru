@@ -10,6 +10,7 @@ import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const rightArrowIcon = <FontAwesomeIcon icon={faLongArrowAltRight} />
+    
     const history = useHistory();
     const travelFun = e => {
         if (e === "cox-bazar") {

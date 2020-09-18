@@ -8,7 +8,7 @@ import google from '../../Image/Icon/google.png';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from './auth';
 
-//form Validation check by warnings
+//form Validation check by warnings START
 const errors = {
     isEmail: 'You have to type a valid email',
     maxLength: 'You cannot type more than 25 characters',
@@ -17,6 +17,8 @@ const errors = {
     equalsField: 'Password is not match',
     isStrong: 'password is not strong include spacial characters $,% or capital latter'
 }
+//form Validation check by warnings END
+
 const SignUp = () => {
     const [canSubmit, setCanSubmit] = useState(false)
     addValidationRule('isStrong', function (values, value) {
@@ -39,9 +41,8 @@ const SignUp = () => {
 
     //form submit to firebase register with email and password
     const submit = (newUserInfo) => {
-        console.log(newUserInfo);
-        if (newUserInfo.email && newUserInfo.password) {
-            registerEmailAndPassword(newUserInfo.email, newUserInfo.password)
+        if (newUserInfo.email && newUserInfo.password && newUserInfo.fullName) {
+            registerEmailAndPassword(newUserInfo.email, newUserInfo.password, newUserInfo.fullName)
                 .then(r => {
                     history.replace(from);
                 })
@@ -55,7 +56,7 @@ const SignUp = () => {
                 history.replace(from);
             })
     }
-    
+
     //facebook sign in
     const handFacebookSign = () => {
         facebookRegistration()
@@ -69,15 +70,22 @@ const SignUp = () => {
             <Formsy className='form' onValidSubmit={submit} onValid={enableButton} onInvalid={disableButton}>
                 <h2>Create an Account</h2>
                 <MyInput label="" type="text" name="firstName" validations="maxLength:25" placeholder="First Name" required />
+
                 <MyInput label="" type="text" name="lastName" validations="maxLength:25" placeholder="Last Name" required />
+
                 <MyInput label="" type="text" name="fullName" validations="maxLength:25" placeholder="Full Name..." required />
+
                 <MyInput label="" type="text" name="email" validations="maxLength:25,isEmail" validationErrors={errors} placeholder="Email address..." required />
+
                 <MyInput label="" type="password" name="password" validations="minLength:6,isStrong" validationErrors={errors} placeholder="password..." required />
+
                 <MyInput label="" type="password" name="passwordrepeat" validations="equalsField:password" validationErrors={errors} placeholder="password-repeat" required />
+
                 <button type="submit" disabled={!canSubmit} className="">
                     Cerate An Account
                 </button>
                 <p className="text-center">Alredy have an Account? <Link className="Link" to='/login'>Login</Link></p>
+
                 <br />
                 {
                     succeed === true

@@ -10,7 +10,7 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import google from '../../Image/Icon/google.png';
 import { UserContext } from './auth';
 
-//form Validation check by warnings
+//form Validation check by warnings START
 const errors = {
     isEmail: 'You have to type a valid email',
     maxLength: 'You cannot type more than 25 characters',
@@ -18,6 +18,8 @@ const errors = {
     isAlpha: 'You can only type letters',
     equalsField: 'Password is not match'
 }
+//form Validation check by warnings END
+
 const Login = () => {
     const [canSubmit, setCanSubmit] = useState(false)
     addValidationRule('isStrong', function (values, value) {
@@ -72,24 +74,34 @@ const Login = () => {
         <Container id="login" className="app">
             <Formsy className='form' onValidSubmit={submitLogin} onValid={enableButton} onInvalid={disableButton}>
                 <h2 className="text-dark">Login</h2>
+
                 <MyInput label="" type="text" name="email" validations="maxLength:25,isEmail" validationErrors={errors} placeholder="Email address..." required />
+
                 <MyInput label="" type="password" name="password" validations="minLength:6" validationErrors={errors} placeholder="password..." required />
+
                 <div className="d-flex justify-content-between align-items-center">
                     <div>
                         <input type="checkbox" id="login-checkbox" /><span className="text-danger">Remember me</span>
                     </div>
                     <p className="text-dark cursor-pointer" onClick={() => changePath()}>Forgot your password</p>
                 </div>
+
                 <br />
                 <button type="submit" disabled={!canSubmit} className="">
                     Log-In
                 </button>
+
                 {error
                     ? <p><span className="text-danger w-50">{error}</span></p>
                     : <p></p>
                 }
                 <br />
-                <p className="text-center text-dark">Created A Account? <Link className="Link" to='/sign-up'>Sign-Up</Link></p>
+
+                <p className="text-center text-dark">Created A Account?
+                    <Link className="Link" to='/sign-up'>
+                        Sign-Up
+                    </Link>
+                </p>
             </Formsy>
             <div className="other-sign-option">
                 <div style={{ color: "#fff" }}>

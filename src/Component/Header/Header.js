@@ -10,7 +10,7 @@ const Header = () => {
     const { logOut } = auth;
 
     const handSingOut = () => {
-        logOut()
+        logOut();
     }
     return (
         <Container className="w-100" id="header">

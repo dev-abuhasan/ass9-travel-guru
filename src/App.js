@@ -27,9 +27,6 @@ function App() {
             <Route exact path="/home">
               <Home />
             </Route>
-            {/* <Route exact path="/place-hotel/:Place">
-                <PlaceHotel />
-            </Route> */}
             <PrivateRoute exact path="/place-hotel/:Place">
               <PlaceHotel />
             </PrivateRoute>
