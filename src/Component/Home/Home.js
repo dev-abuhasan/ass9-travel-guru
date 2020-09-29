@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import React, { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import "./Home.css"
 import coxBazarImg from "../../Image/travel/Sajek.png";
@@ -10,7 +10,7 @@ import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const rightArrowIcon = <FontAwesomeIcon icon={faLongArrowAltRight} />
-    
+
     const history = useHistory();
     const travelFun = e => {
         if (e === "cox-bazar") {
@@ -24,6 +24,16 @@ const Home = () => {
             history.push(url);
         }
     }
+
+    //selectRight function
+    const [activePlace, setActivePlace] = useState(false);
+    const selectRight = (e) => {
+        if (activePlace === false) {
+            setActivePlace(true);
+        }
+    }
+
+
     return (
         <Container id="home" className="row m-auto">
             <section id="travel-details-area" className="col-md-4">
@@ -38,25 +48,30 @@ const Home = () => {
                     <Col md={4} className="slider-item slider-item1">
                         <div onClick={() => travelFun('cox-bazar')} className="slider-info">
                             <img src={coxBazarImg} alt="" />
-                            <h3>COX'S BAZAR</h3>
+                            <h3>{"COX'S BAZAR"}</h3>
                         </div>
                     </Col>
                     <Col md={4} className="slider-item slider-item2">
                         <div onClick={() => travelFun('sundorbon')} className="slider-info">
                             <img src={sundorbonImg} alt="" />
-                            <h3>Sundarbon</h3>
+                            <h3>{"Sundarbon"}</h3>
                         </div>
                     </Col>
                     <Col md={4} className="slider-item slider-item3">
                         <div className="slider-info">
-                            <img onClick={() => travelFun('sreemongol')} src={sreemongolImg} alt=""/>
-                            <h3>Sreemongol</h3>
+                            <img onClick={() => travelFun('sreemongol')} src={sreemongolImg} alt="" />
+                            <h3>{"Sreemongol"}</h3>
                         </div>
                     </Col>
                     <section className="w-75 mx-auto p-3">
                         <button className="btn btn-light m-2 py-2 px-3"><i className="fa fa-chevron-left" aria-hidden="true"></i></button>
-
-                        <button className="btn btn-light m-2 py-2 px-3"><i className="fa fa-chevron-right" aria-hidden="true"></i></button>
+                        <button className={
+                            activePlace === true ?
+                                "btn-arrow m-2 py-2 px-3 active-btn"
+                                : "btn-arrow m-2 py-2 px-3 "
+                        }
+                            onClick={() => selectRight()}
+                        ><i className="fa fa-chevron-right"></i></button>
                     </section>
                 </Row>
             </section>

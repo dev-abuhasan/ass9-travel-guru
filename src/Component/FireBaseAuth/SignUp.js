@@ -42,6 +42,7 @@ const SignUp = () => {
     //form submit to firebase register with email and password
     const submit = (newUserInfo) => {
         if (newUserInfo.email && newUserInfo.password && newUserInfo.fullName) {
+            console.log(newUserInfo.email,newUserInfo.password);
             registerEmailAndPassword(newUserInfo.email, newUserInfo.password, newUserInfo.fullName)
                 .then(r => {
                     history.replace(from);

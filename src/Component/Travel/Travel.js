@@ -33,7 +33,7 @@ const Travel = () => {
                 </Col>
                 <Col md={6}>
                     <div id="travel-form-sec">
-                        <Form>
+                        <Form onSubmit={() => handChangePath()}> 
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Origin</Form.Label>
                                 <Form.Control className="tavel-input" type="text" placeholder="Enter your District" required />
@@ -60,7 +60,7 @@ const Travel = () => {
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" label="i agree all condition" className="" required />
                             </Form.Group>
-                            <Button variant="" onClick={() => handChangePath()} className="login-btn d-block w-100" type="submit">
+                            <Button variant="" className="login-btn d-block w-100" type="submit">
                                 Start Booking
                             </Button>
                         </Form>

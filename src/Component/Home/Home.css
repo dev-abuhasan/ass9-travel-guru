@@ -53,3 +53,15 @@ p{
     color: #fff;
    
 }
+.active-btn{
+    border: 2px solid red;
+}
+.active-btn:hover{
+    border: 2px solid red;
+}
+.active-btn:focus{
+    outline: none;
+}
+.btn-arrow{
+    border-radius: 5px;
+}

@@ -5,9 +5,36 @@ import logo from '../../Image/Logo.png';
 import { UserContext } from '../FireBaseAuth/auth';
 import './Header.css'
 const Header = () => {
+
     //get user info auth.js file
     const auth = useContext(UserContext);
-    const { logOut } = auth;
+    const { logOut, user } = auth;
+    //console.log(user);
+
+    // const pop = ()=>{
+    //     if(user === null){
+    //         return 'login';
+    //     }else if(user === user.name === undefined){
+    //         return user;
+    //     }else{
+    //         return user.name;
+    //     }
+    //     //return popupSignUser;
+    // }
+    
+
+    const handleShowLogin = () => {
+       if(user === null){
+           return "login";
+       }
+       if(user.name){
+           return user.name
+       }
+       if(user){
+           return user;
+       }
+    }
+    //const popupSignUser = user.name;
 
     const handSingOut = () => {
         logOut();
@@ -30,8 +57,13 @@ const Header = () => {
                         <Link className="header-nav-item" to="/">Destination</Link>
                         <Link className="header-nav-item" to="/">Blog</Link>
                         <Link className="header-nav-item" to="/">Contact</Link>
-                        <Link className="header-nav-item login-btn" to="/login">Login</Link>
-                        <Link onClick={() =>handSingOut()} className="header-nav-item sign-out-btn" to="/login">SingOut</Link>
+                        <Link className="header-nav-item login-btn" to="/login">
+                            {/* <button onClick={()=> handleShowLogin()}></button> */}
+                            {
+                                handleShowLogin()
+                            }
+                        </Link>
+                        <Link onClick={() => handSingOut()} className="header-nav-item sign-out-btn" to="/login">SingOut</Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
